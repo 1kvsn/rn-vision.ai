@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { globalStyles } from '../styles/global.js';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import FlatButton from '../reusableComponents/FlatButton.js';
+
+import { globalStyles } from '../styles/global.js';
+
 import Input from '../reusableComponents/Input';
+import Loading from '../reusableComponents/Loading';
 import Heading from '../reusableComponents/Heading';
+import TextButton from '../reusableComponents/TextButton';
+import FlatButton from '../reusableComponents/FlatButton';
 
 
 export default function RegisterForm() {
-	return (
-		<View>
-			<Heading style={styles.title}>REGISTER</Heading>
-			<Formik>
+	const [loading, setLoading] = useState(false);
 
+	return (
+		<View style={globalStyles.container}>
+			<Heading style={styles.title}>REGISTRATION</Heading>
+			<Formik>
 				{props => (
 					<View>
 						<Input 
@@ -36,10 +41,17 @@ export default function RegisterForm() {
 							placeholder='Confirm password'
 							secureTextEntry
 						/>
-						<FlatButton text='submit' />
+						<FlatButton text='register' />
+						<TextButton
+        			title='Have an account? Login here'
+							onPress={() => {
+								navigation.navigate('Registration');
+							}}
+      			/>
 					</View>
 				)}
 			</Formik>
+			<Loading loading={loading} />
 		</View>
 	)
 }
@@ -47,7 +59,9 @@ export default function RegisterForm() {
 // can be gloBalStyles ?
 const styles = StyleSheet.create({
   title: {
-    marginBottom: 48,
+		marginTop: 48,
+		marginBottom: 48,
+		textAlign: 'center'
   },
   input: {
     marginVertical: 8,
