@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
+import { Provider } from 'react-redux';
 
-import RegisterForm from './screens/registerForm';
-import Input from './reusableComponents/Input';
+import { store } from './config/store/store';
 import Navigator from './routes/drawer';
-
 
 
 const getFonts = () => Font.loadAsync({
@@ -17,15 +15,11 @@ const getFonts = () => Font.loadAsync({
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  // return (
-  //   <View style={styles.container}>
-  //     <RegisterForm />
-  //   </View>
-  // );
-
   if (fontsLoaded) {
     return (
-      <Navigator />
+      <Provider store={store}>
+          <Navigator />
+      </Provider>
     );
   } else {
     return (
@@ -36,12 +30,3 @@ export default function App() {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-});
