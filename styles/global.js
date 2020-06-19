@@ -15,11 +15,11 @@ export const globalStyles = StyleSheet.create({
     padding: 20,
   },
   input: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    padding: 10,
-    fontSize: 18,
-    borderRadius: 6,
+    backgroundColor: '#e8e8e8',
+    width: '100%',
+    padding: 12,
+    borderRadius: 8,
+    color: 'black',
   },
   errorText: {
     color: 'crimson',

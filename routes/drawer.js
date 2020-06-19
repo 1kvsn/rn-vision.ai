@@ -8,15 +8,15 @@ import AuthStack from './authStack';
 
 // drawer navigation options
 const RootDrawerNavigator = createDrawerNavigator({
-  Home: {
-    screen: HomeStack,
-  },
+  // Home: {
+  //   screen: HomeStack,
+  // },
   // About: {
   //   screen: AboutStack,
 	// },
-	// Auth: {
-	// 	screen: AuthStack,
-	// }
+	Auth: {
+		screen: AuthStack,
+	}
 });
 
 export default createAppContainer(RootDrawerNavigator);

@@ -1,14 +1,16 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { globalStyles } from '../styles/global.js';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import FlatButton from '../reusableComponents/FlatButton.js';
+
+import { globalStyles } from '../styles/global.js';
+
 import Input from '../reusableComponents/Input';
 import Heading from '../reusableComponents/Heading';
+import TextButton from '../reusableComponents/TextButton';
+import FlatButton from '../reusableComponents/FlatButton';
 
-
-export default function LoginForm() {
+export default function LoginForm({ navigation }) {
 	return (
 		<View style={globalStyles.container}>
 			<Heading style={styles.title}>LOGIN</Heading>
@@ -26,10 +28,16 @@ export default function LoginForm() {
 							placeholder='Password'
 							secureTextEntry
 						/>
-						<FlatButton text='submit' />
+						<FlatButton text='Login' style={styles.loginButton} />
 					</View>
 				)}
 			</Formik>
+			<TextButton
+				title="Don't have an account? Create here"
+				onPress={() => {
+					navigation.navigate('Register');
+				}}
+			/>
 		</View>
 	)
 }
