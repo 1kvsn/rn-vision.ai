@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { Formik } from 'formik';
@@ -14,8 +14,13 @@ import FlatButton from '../../reusableComponents/FlatButton';
 import { loginSchema } from '../../utils/validations';
 import { loginUserAction } from '../../actions';
 
-function LoginForm({ navigation, loginUser, isLoading }) {
-
+function LoginForm({ navigation, loginUser, isLoading, user }) {
+	console.log(user, 'this is user in state');
+	useEffect(() => {
+		if (user && user.email) {
+			navigation.navigate('Home');
+		}
+	})
 	return (
 		<View style={globalStyles.container}>
 			<Heading style={styles.title}>LOGIN</Heading>
@@ -74,7 +79,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
 	return {
-		user: state.user,
+		user: state.user.user,
 		isLoading: state.user.isLoading,
 	}
 }
