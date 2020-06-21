@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { StyleSheet, View, Text } from 'react-native';
 import { Formik } from 'formik';
 
-import { globalStyles } from '../../styles/global.js';
+import { globalStyles } from '../styles/global.js';
 
-import { StyledInput } from '../../reusableComponents/Input';
-import Loading from '../../reusableComponents/Loading';
-import Heading from '../../reusableComponents/Heading';
-import TextButton from '../../reusableComponents/TextButton';
-import FlatButton from '../../reusableComponents/FlatButton';
+import { StyledInput } from '../reusableComponents/Input';
+import Loading from '../reusableComponents/Loading';
+import Heading from '../reusableComponents/Heading';
+import TextButton from '../reusableComponents/TextButton';
+import FlatButton from '../reusableComponents/FlatButton';
 
-import { registerSchema } from '../../utils/validations';
-import { registerUserAction } from '../../actions'; 
+import { registerSchema } from '../utils/validations';
+import { registerUserAction } from '../actions'; 
 
 function RegisterForm({ navigation, registerUser, user: { isRegistrationSuccess, isLoading } }) {
 

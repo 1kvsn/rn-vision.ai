@@ -3,24 +3,19 @@ import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { Formik } from 'formik';
 
-import { globalStyles } from '../../styles/global.js';
+import { globalStyles } from '../styles/global.js';
 
-import { StyledInput } from '../../reusableComponents/Input';
-import Heading from '../../reusableComponents/Heading';
-import Loading from '../../reusableComponents/Loading';
-import TextButton from '../../reusableComponents/TextButton';
-import FlatButton from '../../reusableComponents/FlatButton';
+import { StyledInput } from '../reusableComponents/Input';
+import Heading from '../reusableComponents/Heading';
+import Loading from '../reusableComponents/Loading';
+import TextButton from '../reusableComponents/TextButton';
+import FlatButton from '../reusableComponents/FlatButton';
 
-import { loginSchema } from '../../utils/validations';
-import { loginUserAction } from '../../actions';
+import { loginSchema } from '../utils/validations';
+import { loginUserAction } from '../actions';
 
-function LoginForm({ navigation, loginUser, isLoading, user }) {
-	console.log(user, 'this is user in state');
-	useEffect(() => {
-		if (user && user.email) {
-			navigation.navigate('Home');
-		}
-	})
+function LoginForm({ navigation, loginUser, isLoading }) {
+
 	return (
 		<View style={globalStyles.container}>
 			<Heading style={styles.title}>LOGIN</Heading>

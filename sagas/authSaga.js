@@ -1,6 +1,7 @@
-import { takeEvery, takeLatest, put } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
 import Firebase from '../config/firebase';
-import { loginSuccessAction, authInProgressAction } from '../actions';
+import { loginSuccessAction, registerSuccessAction, authInProgressAction } from '../actions';
+
 
 function* userLogin({ payload }) {
 	const { email, password } = payload.data;
@@ -28,6 +29,22 @@ function* userLogin({ payload }) {
 		}
 }
 
-export function* loginSaga() {
-  yield takeLatest('LOGIN_USER', userLogin);
+function* userRegister({ payload }) {
+	const { email, password } = payload.data;
+	try {
+		yield put(authInProgressAction(true));
+		const response = Firebase.auth().createUserWithEmailAndPassword(email, password); // doesn't respond with useful data
+		yield put(authInProgressAction(false));
+		yield put(registerSuccessAction(true));
+	} catch (error) {
+			yield put(authInProgressAction(false));
+			// make showToast like action to handleErrors and show in UI
+			console.log(error.toString(error));
+		}
+}
+
+
+export function* authSaga() {
+	yield takeLatest('LOGIN_USER', userLogin);
+	yield takeLatest('REGISTER_USER', userRegister);
 }
