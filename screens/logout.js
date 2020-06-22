@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Button } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default function LogOut() {
-	const clearAsyncStorage = async() => AsyncStorage.clear();
+	const clearAsyncStorage = async() => await AsyncStorage.clear();
 
 	return (
 		<View style={{
@@ -11,7 +11,7 @@ export default function LogOut() {
 			justifyContent: 'center',
 			alignItems: 'center'
 			}}>
-			<Button title="Log Out" onPress={() => clearAsyncStorage} />
+			<Button title="Log Out" onPress={clearAsyncStorage} />
 		</View>
 	)
 }

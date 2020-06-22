@@ -20,6 +20,12 @@ import LogOut from '../screens/logout';
 
 
 const AuthStack = createStackNavigator();
+const AuthStackScreen = () => (
+	<AuthStack.Navigator>
+		<AuthStack.Screen name='Login' component={Login} options={{ title: 'Login' }} />
+		<AuthStack.Screen name='Register' component={Register} options={{ title: 'Register' }} />
+	</AuthStack.Navigator>
+)
 
 const HomeStack = createStackNavigator();
 const HomeStackScreen = () => (
@@ -45,6 +51,36 @@ const TabsScreen = () => (
 )
 
 const Drawer = createDrawerNavigator();
+const DrawerScreen = () => (
+	<Drawer.Navigator>
+		<Drawer.Screen name="Home" component={TabsScreen} />
+		<Drawer.Screen name="Settings" component={SettingStackScreen} />
+		<Drawer.Screen name="Log Out" component={LogOut} />
+	</Drawer.Navigator>
+)
+
+const RootStack = createStackNavigator();
+const RootStackScreen = ({ auth }) => (
+  <RootStack.Navigator headerMode="none">
+    {auth.user && auth.user.email ? (
+      <RootStack.Screen
+        name="App"
+        component={DrawerScreen}
+        options={{
+          animationEnabled: false
+        }}
+      />
+    ) : (
+      <RootStack.Screen
+        name="Auth"
+        component={AuthStackScreen}
+        options={{
+          animationEnabled: false
+        }}
+      />
+    )}
+  </RootStack.Navigator>
+);
 
 const dummyData = {
 	isLoading: false,
@@ -98,18 +134,7 @@ const Navigation = ({ auth }) => {
 
   return (
 		<NavigationContainer>
-			{auth.user && auth.user.email ? (
-				<Drawer.Navigator>
-					<Drawer.Screen name="Home" component={TabsScreen} />
-					<Drawer.Screen name="Settings" component={SettingStackScreen} />
-					<Drawer.Screen name="Log Out" component={LogOut} />
-				</Drawer.Navigator>
-			) : (
-				<AuthStack.Navigator>
-					<AuthStack.Screen name='Login' component={Login} options={{ title: 'Login' }} />
-					<AuthStack.Screen name='Register' component={Register} options={{ title: 'Register' }} />
-				</AuthStack.Navigator>
-			)}
+			<RootStackScreen auth={auth} />
 		</NavigationContainer>
   );
 }

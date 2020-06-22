@@ -23,7 +23,7 @@ function LoginForm({ navigation, loginUser, isLoading }) {
 				initialValues={{ email: '', password: '' }}
 				validationSchema={loginSchema}
 				onSubmit={(values, actions) => {
-					actions.resetForm();
+					// actions.resetForm();
           loginUser(values.email, values.password);
         }}
 			>
