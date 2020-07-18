@@ -116,7 +116,6 @@ const Navigation = ({ auth }) => {
   if (isLoading) {
     return <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text>Loading...</Text></View>
 	}
-	// storeToken(dummyData);
 	
 	// React.useEffect(() => {
 	// 	const checkToken = async () => {
@@ -130,11 +129,12 @@ const Navigation = ({ auth }) => {
 	// 	}
 	// 	checkToken();
 	// }, [])
+
 	
 
   return (
 		<NavigationContainer>
-			<RootStackScreen auth={auth} />
+			<RootStackScreen auth={dummyData} />
 		</NavigationContainer>
   );
 }
